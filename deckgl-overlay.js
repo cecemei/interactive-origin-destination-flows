@@ -27,8 +27,8 @@ export default class DeckGLOverlay extends Component {
 
   static get defaultViewport() {
     return {
-      longitude: -81.50002948329305,
-      latitude: 28.67392391676653,
+      longitude: -81.3850981383551,
+      latitude: 28.50974776747675,
       zoom: 11,
       maxZoom: 15,
       pitch: 30,
@@ -64,10 +64,8 @@ export default class DeckGLOverlay extends Component {
     let flows_dict = {};
     var t = flows.split(',');
     for (var i in t){
-        
         i = t[i].split(':');
         flows_dict[i[0]] = parseInt(i[1]);
-        
     }
     
     window.flows_dict =flows_dict;
@@ -114,14 +112,44 @@ export default class DeckGLOverlay extends Component {
         pickable: Boolean(this.props.onHover || this.props.onClick)
       })];
       
+    var arcs1=[]; var arcs2=[]; var arcs3=[];
+    for(let i=0;i<arcs.length;i++){
+        if(arcs[i].quantile>=5)
+            arcs3.push(arcs[i])
+        else if(arcs[i].quantile>=3)
+            arcs2.push(arcs[i])
+        else
+            arcs1.push(arcs[i])
+    }        
+      
       layers[1] = new ArcLayer({
-        id: 'arc',
-        data: arcs,
+        id: 'arc1',
+        data: arcs1,
         getSourcePosition: d => d.source,
         getTargetPosition: d => d.target,
         getSourceColor: d => inFlowColors[d.quantile],
         getTargetColor: d => outFlowColors[d.quantile],
         strokeWidth: 2
+      })
+      
+      layers[2] = new ArcLayer({
+        id: 'arc2',
+        data: arcs2,
+        getSourcePosition: d => d.source,
+        getTargetPosition: d => d.target,
+        getSourceColor: d => inFlowColors[d.quantile],
+        getTargetColor: d => outFlowColors[d.quantile],
+        strokeWidth: 4
+      })
+      
+      layers[3] = new ArcLayer({
+        id: 'arc3',
+        data: arcs3,
+        getSourcePosition: d => d.source,
+        getTargetPosition: d => d.target,
+        getSourceColor: d => inFlowColors[d.quantile],
+        getTargetColor: d => outFlowColors[d.quantile],
+        strokeWidth: 8
       })
     ;
 

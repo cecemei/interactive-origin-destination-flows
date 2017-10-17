@@ -4,15 +4,14 @@ import {render} from 'react-dom';
 import MapGL from 'react-map-gl';
 import DeckGLOverlay from './deckgl-overlay.js';
 
-import {json as requestJson} from 'd3-request';
+
 import * as d3 from 'd3';
 
 // Set your mapbox token here
 const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 // Source data GeoJSON
-const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/arc/counties.json'; // eslint-disable-line
-const florida = './florida.json';
+const florida = './data/florida.json';
 
 class Root extends Component {
 
@@ -32,20 +31,11 @@ class Root extends Component {
             window.feature = response.features;
             this.setState({
               data: response.features,
-              selectedCounty: response.features.find(f => f.properties.name === 1)
+              selectedCounty: response.features.find(f => f.properties.name === 6994)
             });
         }
     });
- 
-    /*requestJson(DATA_URL, (error, response) => {
-      if (!error) {
-        this.setState({
-          data: response.features,
-          selectedCounty: response.features.find(f => f.properties.name === '1')//'Los Angeles, CA')
-        });
-      }
-      console.log(JSON.stringify(this.state.data));
-    });*/
+
   }
 
   componentDidMount() {

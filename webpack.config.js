@@ -13,7 +13,7 @@ const CONFIG = {
   devtool: 'source-map',
 
   module: {
-    rules: [ //{ test: /\.json$/, loader: 'json' },
+    rules: [ 
     {
       // Compile ES2015 using buble
       test: /\.js$/,
