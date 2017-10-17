@@ -6,9 +6,10 @@
 * d3
 * buble
 ## How to ##
-In your terminal:
+* Run this in your terminal:
 ```sh
 git clone https://github.com/cecemei/interactive-origin-destination-flows.git
+cd interactive-origin-destination-flows
 npm install
 npm start
 ```
