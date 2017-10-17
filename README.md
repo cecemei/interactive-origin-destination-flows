@@ -6,6 +6,7 @@
 * d3
 * buble
 * Modern Javascript
+* Geo data serialization
 ## How to ##
 * Run this in your terminal:
 ```sh
