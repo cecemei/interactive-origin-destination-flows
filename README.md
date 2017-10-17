@@ -5,6 +5,7 @@
 * webpack
 * d3
 * buble
+* Modern Javascript
 ## How to ##
 * Run this in your terminal:
 ```sh
