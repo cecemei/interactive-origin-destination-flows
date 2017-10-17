@@ -24,14 +24,14 @@ class Root extends Component {
         height: 500
       },
       data: null,
-      selectedCounty: null
+      selectedZone: null
     };
     d3.json(florida, (error, response) => {
         if(!error){
             window.feature = response.features;
             this.setState({
               data: response.features,
-              selectedCounty: response.features.find(f => f.properties.name === 6994)
+              selectedZone: response.features.find(f => f.properties.name === 6994)
             });
         }
     });
@@ -51,14 +51,14 @@ class Root extends Component {
   }
 
   _onHover(info) {
-    // Hovered over a county
+    // Hovered over a zone
   }
 
   _onClick(info) {
-    // Clicked a county
+    // Clicked a zone
     window.info = info;
     //console.log(info.object);
-    this.setState({selectedCounty: info.object});
+    this.setState({selectedZone: info.object});
   }
 
   _onViewportChange(viewport) {
@@ -68,7 +68,7 @@ class Root extends Component {
   }
 
   render() {
-    const {viewport, data, selectedCounty} = this.state;
+    const {viewport, data, selectedZone} = this.state;
     window.state=this.state;
     return (
       <MapGL
@@ -77,7 +77,7 @@ class Root extends Component {
         mapboxApiAccessToken={MAPBOX_TOKEN}>
         <DeckGLOverlay viewport={viewport}
           data={data}
-          selectedFeature={selectedCounty}
+          selectedFeature={selectedZone}
           onHover={this._onHover.bind(this)}
           onClick={this._onClick.bind(this)}
           strokeWidth={2}

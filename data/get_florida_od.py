@@ -24,10 +24,10 @@ def main(dp='dp1'):
          '''%(dp, dp)
     cursor.execute(query)
     records = cursor.fetchall()
-    print(type(records))
     #pdb.set_trace()
     with open('florida.json', 'w') as f:
         json.dump(records[0][0], f)
+    cursor.close()
     
 if __name__ == "__main__":
     main(dp='dp2')
